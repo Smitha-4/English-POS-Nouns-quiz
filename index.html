@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noun Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #4c51bf;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .quiz-question {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .option {
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 48%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .option:hover {
+            background-color: #a0aec0;
+        }
+        .correct-answer {
+            background-color: #48bb78;
+            color: white;
+        }
+        .incorrect-answer {
+            background-color: #f56565;
+            color: white;
+        }
+        button {
+            margin-top: 1rem;
+            padding: 10px 20px;
+            background-color: #68d391;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #48bb78;
+        }
+        #results {
+            margin-top: 2rem;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #results h2 {
+            font-size: 1.5rem;
+            color: #4c51bf;
+            margin-bottom: 1rem;
+        }
+        #results p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .play-again {
+            margin-top: 1rem;
+            padding: 10px 20px;
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .play-again:hover {
+            background-color: #3182ce;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <h1 class="text-2xl font-semibold text-blue-600 mb-8">Noun Quiz</h1>
+    <div id="quiz-container">
+        <div class="quiz-question" data-question="1">
+            <p>1. Which of the following is a noun?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) Run</div>
+                <div class="option" data-option="b">b) Book</div>
+                <div class="option" data-option="c">c) Quickly</div>
+                <div class="option" data-option="d">d) Happy</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="2">
+            <p>2. Which sentence contains a noun?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) The cat sat on the mat.</div>
+                <div class="option" data-option="b">b) He runs fast.</div>
+                <div class="option" data-option="c">c) She is very happy.</div>
+                <div class="option" data-option="d">d) They arrived late.</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="3">
+            <p>3. Which word is NOT a noun?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) Table</div>
+                <div class="option" data-option="b">b) Chair</div>
+                <div class="option" data-option="c">c) Eat</div>
+                <div class="option" data-option="d">d) Teacher</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="4">
+            <p>4. Identify the noun: "The dog barked loudly."</p>
+            <div class="options">
+                <div class="option" data-option="a">a) Barked</div>
+                <div class="option" data-option="b">b) Loudly</div>
+                <div class="option" data-option="c">c) Dog</div>
+                <div class="option" data-option="d">d) The</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="5">
+            <p>5. Which of these is a proper noun?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) City</div>
+                <div class="option" data-option="b">b) River</div>
+                <div class="option" data-option="c">c) John</div>
+                <div class="option" data-option="d">d) Country</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="6">
+            <p>6. How many nouns are in this sentence? "The quick brown fox jumps over the lazy dog."</p>
+            <div class="options">
+                <div class="option" data-option="a">a) 3</div>
+                <div class="option" data-option="b">b) 4</div>
+                <div class="option" data-option="c">c) 5</div>
+                <div class="option" data-option="d">d) 6</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="7">
+            <p>7. Which sentence does NOT contain a noun?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) I have a book.</div>
+                <div class="option" data-option="b">b) The sky is blue.</div>
+                <div class="option" data-option="c">c) He runs quickly.</div>
+                <div class="option" data-option="d">d) She ate an apple.</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="8">
+            <p>8. Which word can be both a noun and a verb?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) Sing</div>
+                <div class="option" data-option="b">b) Dance</div>
+                <div class="option" data-option="c">c) Run</div>
+                <div class="option" data-option="d">d) Walk</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="9">
+            <p>9. Which of these is a plural noun?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) Child</div>
+                <div class="option" data-option="b">b) Mouse</div>
+                <div class="option" data-option="c">c) Feet</div>
+                <div class="option" data-option="d">d) Person</div>
+            </div>
+        </div>
+        <div class="quiz-question" data-question="10">
+            <p>10. Which is a collective noun?</p>
+            <div class="options">
+                <div class="option" data-option="a">a) Student</div>
+                <div class="option" data-option="b">b) Class</div>
+                <div class="option" data-option="c">c) Teacher</div>
+                <div class="option" data-option="d">d) School</div>
+            </div>
+        </div>
+    </div>
+    <button id="submit-quiz">Submit Quiz</button>
+    <div id="results">
+        <h2>Results</h2>
+        <p>Your Score: <span id="final-score">0</span></p>
+        <p>Correct Answers: <span id="correct-answers">0</span></p>
+        <p>Incorrect Answers: <span id="incorrect-answers">0</span></p>
+        <button class="play-again" onclick="resetQuiz()">Play Again</button>
+    </div>
+    <script>
+        const quizContainer = document.getElementById('quiz-container');
+        const submitButton = document.getElementById('submit-quiz');
+        const resultsContainer = document.getElementById('results');
+        const finalScoreDisplay = document.getElementById('final-score');
+        const correctAnswersDisplay = document.getElementById('correct-answers');
+        const incorrectAnswersDisplay = document.getElementById('incorrect-answers');
+        let score = 0;
+        let correctCount = 0;
+        let incorrectCount = 0;
+        const questions = [
+            {
+                question: "Which of the following is a noun?",
+                correctAnswer: "b"
+            },
+            {
+                question: "Which sentence contains a noun?",
+                correctAnswer: "a"
+            },
+            {
+                question: "Which word is NOT a noun?",
+                correctAnswer: "c"
+            },
+            {
+                question: "Identify the noun: 'The dog barked loudly.'",
+                correctAnswer: "c"
+            },
+            {
+                question: "Which of these is a proper noun?",
+                correctAnswer: "c"
+            },
+            {
+                question: "How many nouns are in this sentence? 'The quick brown fox jumps over the lazy dog.'",
+                correctAnswer: "b"
+            },
+            {
+                question: "Which sentence does NOT contain a noun?",
+                correctAnswer: "c"
+            },
+            {
+                question: "Which word can be both a noun and a verb?",
+                correctAnswer: "d"
+            },
+             {
+                question: "Which of these is a plural noun?",
+                correctAnswer: "c"
+            },
+            {
+                question: "Which is a collective noun?",
+                correctAnswer: "b"
+            }
+        ];
+        submitButton.addEventListener('click', () => {
+            const questionElements = quizContainer.querySelectorAll('.quiz-question');
+            questionElements.forEach(questionElement => {
+                const selectedOption = questionElement.querySelector('.option.selected');
+                if (selectedOption) {
+                    const questionNumber = parseInt(questionElement.dataset.question);
+                    const selectedAnswer = selectedOption.dataset.option;
+                    if (selectedAnswer === questions[questionNumber - 1].correctAnswer) {
+                        score++;
+                        correctCount++;
+                    } else {
+                        incorrectCount++;
+                        selectedOption.classList.add('incorrect-answer');
+                        const correctOption = questionElement.querySelector(`.option[data-option="${questions[questionNumber - 1].correctAnswer}"]`);
+                        correctOption.classList.add('correct-answer');
+                    }
+                } else {
+                   const questionNumber = parseInt(questionElement.dataset.question);
+                    const correctOption = questionElement.querySelector(`.option[data-option="${questions[questionNumber - 1].correctAnswer}"]`);
+                    correctOption.classList.add('correct-answer');
+                    incorrectCount++;
+                }
+            });
+            finalScoreDisplay.textContent = score;
+            correctAnswersDisplay.textContent = correctCount;
+            incorrectAnswersDisplay.textContent = incorrectCount;
+            quizContainer.style.display = 'none';
+            resultsContainer.style.display = 'block';
+            submitButton.style.display = 'none';
+        });
+        quizContainer.addEventListener('click', (event) => {
+            const clickedOption = event.target;
+            if (clickedOption.classList.contains('option')) {
+                const questionElement = clickedOption.closest('.quiz-question');
+                const previouslySelected = questionElement.querySelector('.option.selected');
+                if (previouslySelected) {
+                    previouslySelected.classList.remove('selected');
+                }
+                clickedOption.classList.add('selected');
+            }
+        });
+        function resetQuiz() {
+            score = 0;
+            correctCount = 0;
+            incorrectCount = 0;
+            finalScoreDisplay.textContent = score;
+            correctAnswersDisplay.textContent = correctCount;
+            incorrectAnswersDisplay.textContent = incorrectCount;
+            resultsContainer.style.display = 'none';
+            quizContainer.style.display = 'block';
+            submitButton.style.display = 'block';
+            const optionElements = quizContainer.querySelectorAll('.option');
+            optionElements.forEach(option => {
+                option.classList.remove('selected', 'correct-answer', 'incorrect-answer');
+            });
+        }
+    </script>
+</body>
+</html>
